@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOBHO IS PEAK</title>
     <style>
-        /* Fullscreen setup with a clean geometric pattern background */
+        /* Base geometric pattern setup */
         body, html {
             margin: 0;
             padding: 0;
@@ -22,26 +22,45 @@
             background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
         }
 
-        /* Centered display container */
+        /* Container for custom photo slideshow layers */
+        .photo-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.4; /* Fades the photos so text stays completely readable */
+        }
+
+        .photo-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.8s ease-in-out; /* Smooth transition fade */
+        }
+
+        /* Centered overlay layout */
         .text-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            z-index: 2;
             text-align: center;
             width: 100%;
         }
 
-        /* Big stylized hype text */
+        /* Big color-shifting typography */
         .text-container h1 {
             font-size: 9vw;
             margin: 0;
             letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+            text-shadow: 0 0 20px rgba(0,0,0,0.9);
             animation: colorShift 2s infinite linear;
         }
 
-        /* Color animation loop */
+        /* Seamless neon color cycling values */
         @keyframes colorShift {
             0%   { color: #ff0055; text-shadow: 0 0 30px #ff0055; }
             25%  { color: #00ffcc; text-shadow: 0 0 30px #00ffcc; }
@@ -53,9 +72,41 @@
 </head>
 <body>
 
+    <div class="photo-background">
+        <!-- Secure cross-origin wrapper for the initial image image layer -->
+        <img id="slideshow" src="https://weserv.nl" alt="Hype Visual">
+    </div>
+
     <div class="text-container">
         <h1>KOBHO IS PEAK</h1>
     </div>
+
+    <script>
+        // Imgur unblocked caching pathways mapped to your media IDs
+        const images = [
+            "https://weserv.nl",
+            "https://weserv.nl",
+            "https://weserv.nl",
+            "https://weserv.nl"
+        ];
+
+        let currentIndex = 0;
+        const imgElement = document.getElementById("slideshow");
+
+        function changeImage() {
+            // Apply a quick fade effect trick during swap
+            imgElement.style.opacity = 0;
+            
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                imgElement.src = images[currentIndex];
+                imgElement.style.opacity = 1;
+            }, 400);
+        }
+
+        // Swaps the image frames automatically every 3 seconds
+        setInterval(changeImage, 3000);
+    </script>
 
 </body>
 </html>
