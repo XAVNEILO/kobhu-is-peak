@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOBHO IS PEAK</title>
     <style>
-        /* Base geometric pattern setup */
+        /* Reset margins and hide scrollbars */
         body, html {
             margin: 0;
             padding: 0;
@@ -13,34 +13,27 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Arial Black', sans-serif;
-            background-color: #111;
-            background-image: linear-gradient(45deg, #000000 25%, transparent 25%), 
-                              linear-gradient(-45deg, #000000 25%, transparent 25%), 
-                              linear-gradient(45deg, transparent 75%, #000000 75%), 
-                              linear-gradient(-45deg, transparent 75%, #000000 75%);
-            background-size: 40px 40px;
-            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+            background-color: #000;
         }
 
-        /* Container for custom photo slideshow layers */
-        .photo-background {
+        /* Fullscreen background image setup */
+        .background-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
-            opacity: 0.4; /* Fades the photos so text stays completely readable */
         }
 
-        .photo-background img {
+        .background-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.8s ease-in-out; /* Smooth transition fade */
+            transition: opacity 0.5s ease-in-out;
         }
 
-        /* Centered overlay layout */
+        /* Centered overlay text layout */
         .text-container {
             position: absolute;
             top: 50%;
@@ -51,30 +44,28 @@
             width: 100%;
         }
 
-        /* Big color-shifting typography */
         .text-container h1 {
-            font-size: 9vw;
+            font-size: 8vw;
             margin: 0;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(0,0,0,0.9);
-            animation: colorShift 2s infinite linear;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.9);
+            animation: colorChange 2s infinite linear;
         }
 
-        /* Seamless neon color cycling values */
-        @keyframes colorShift {
-            0%   { color: #ff0055; text-shadow: 0 0 30px #ff0055; }
-            25%  { color: #00ffcc; text-shadow: 0 0 30px #00ffcc; }
-            50%  { color: #ffff00; text-shadow: 0 0 30px #ffff00; }
-            75%  { color: #ff00ff; text-shadow: 0 0 30px #ff00ff; }
-            100% { color: #ff0055; text-shadow: 0 0 30px #ff0055; }
+        /* Smoothly looping text color animation */
+        @keyframes colorChange {
+            0%   { color: #ff0055; text-shadow: 0 0 20px #ff0055; }
+            25%  { color: #00ffcc; text-shadow: 0 0 20px #00ffcc; }
+            50%  { color: #ffff00; text-shadow: 0 0 20px #ffff00; }
+            75%  { color: #ff00ff; text-shadow: 0 0 20px #ff00ff; }
+            100% { color: #ff0055; text-shadow: 0 0 20px #ff0055; }
         }
     </style>
 </head>
 <body>
 
-    <div class="photo-background">
-        <!-- Secure cross-origin wrapper for the initial image image layer -->
-        <img id="slideshow" src="https://weserv.nl" alt="Hype Visual">
+    <div class="background-container">
+        <!-- Loads your local 1.png file directly -->
+        <img id="slideshow" src="1.png" alt="Peak Background">
     </div>
 
     <div class="text-container">
@@ -82,26 +73,21 @@
     </div>
 
     <script>
-        // Imgur unblocked caching pathways mapped to your media IDs
+        // Matches the exact 5 PNG images from your screenshot
         const images = [
-            "https://weserv.nl",
-            "https://weserv.nl",
-            "https://weserv.nl",
-            "https://weserv.nl"
+            "1.png",
+            "2.png",
+            "3.png",
+            "4.png",
+            "5.png"
         ];
 
         let currentIndex = 0;
         const imgElement = document.getElementById("slideshow");
 
         function changeImage() {
-            // Apply a quick fade effect trick during swap
-            imgElement.style.opacity = 0;
-            
-            setTimeout(() => {
-                currentIndex = (currentIndex + 1) % images.length;
-                imgElement.src = images[currentIndex];
-                imgElement.style.opacity = 1;
-            }, 400);
+            currentIndex = (currentIndex + 1) % images.length;
+            imgElement.src = images[currentIndex];
         }
 
         // Swaps the image frames automatically every 3 seconds
