@@ -65,8 +65,8 @@
 <body>
 
     <div class="background-container">
-        <!-- Working direct link for the first background image -->
-        <img id="slideshow" src="https://postimg.cc" alt="Peak Background">
+        <!-- Initial image using the unblocked image proxy -->
+        <img id="slideshow" src="https://weserv.nl" alt="Peak Background">
     </div>
 
     <div class="text-container">
@@ -74,13 +74,15 @@
     </div>
 
     <script>
-        // These are rewritten direct image pathways that web browsers can fetch cleanly
+        /* 
+           These paths are custom-built using the image keys inside your album (LgXjlon).
+           The 'weserv.nl' addition strips away Imgur's external website ban so GitHub Pages can read them!
+        */
         const images = [
-            "https://postimg.cc",
-            "https://postimg.cc",
-            "https://postimg.cc",
-            "https://postimg.cc",
-            "https://postimg.cc"
+            "https://weserv.nl",
+            "https://weserv.nl",
+            "https://weserv.nl",
+            "https://weserv.nl"
         ];
 
         let currentIndex = 0;
@@ -91,7 +93,7 @@
             imgElement.src = images[currentIndex];
         }
 
-        // Automatically swap the image every 3000ms (3 seconds)
+        /* Automatically swaps out the background photos every 3 seconds */
         setInterval(changeImage, 3000);
     </script>
 
